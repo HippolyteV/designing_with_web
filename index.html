@@ -1,26 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pairz Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
-    <!-- comment -->
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
-    <h1>Hello world!</h1>
-    <h2 class="purple">title 2</h2>
-    <h3>title 3</h3>
-    <h4>title 4</h4>
-    <h5>title 5</h5>
+    <nav class="sidebar">
+        <h1>PAIRZ</h1>
+        <ul>
+            <li>SHOES GALLERY</li>
+            <li>MEN</li>
+            <li>WOMEN</li>
+            <li>KIDS</li>
+            <li class="red-text">DEALS</li>
+        </ul>
+        <div class="filter-bar">
+            FILTER AND SORT <i data-lucide="chevron-down"></i></div>
+    </nav>
 
-    <p class="purple">a paragraph a paragraph a paragraph a paragraph</p>
-    
-    <img 
-        src="https://www.classequine.com/wp-content/uploads/2021/04/ane-normand.jpg"
-        alt="donkey picture">
-    
+    <main class="content">
+        <header class="top-bar">
+            <div class="cart-wrapper">
+                <i data-lucide="shopping-cart"></i>
+                <span>CART</span>
+            </div>
+        </header>
+        
+        <section class="grid">
+    <div class="product-card">
+        <div class="product-image"><img src="nb-327.png" alt="NB 327"></div>
+        <div class="product-info">
+            <p class="brand">NEW BALANCE / MEN</p>
+            <h3 class="model">327</h3>
+            <p class="price">€ 120,00</p>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="puma-rsz.png" alt="Puma RS-Z"></div>
+        <div class="product-info">
+            <p class="brand">PUMA / MEN</p>
+            <h3 class="model">RS-Z LTH</h3>
+            <p class="price">€ 120,00</p>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="adidas-forum.png" alt="Adidas Forum"></div>
+        <div class="product-info">
+            <p class="brand">ADIDAS ORIGINALS / MEN</p>
+            <h3 class="model">FORUM LOW OG</h3>
+            <p class="price blue">€ 120,00</p>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="asics-gel.png" alt="Asics Gel"></div>
+        <div class="product-info">
+            <p class="brand">ASICS / MEN</p>
+            <h3 class="model">GEL-QUANTUM 360 6 UTILITY</h3>
+            <p class="price orange">€ 120,00</p>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="nike-vapormax.png" alt="Nike Vapormax"></div>
+        <div class="product-info">
+            <p class="brand">NIKE / MEN</p>
+            <h3 class="model">AIR VAPORMAX 2021 FK</h3>
+            <p class="price">€ 120,00</p>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"><img src="puma-mayze.png" alt="Puma Mayze"></div>
+        <div class="product-info">
+            <p class="brand">PUMA / WOMEN</p>
+            <h3 class="model">MAYZE CLASSIC</h3>
+            <p class="price green">€ 120,00</p>
+        </div>
+    </div>
+</section>
+            
+
+            
+    </main>
+
+    <script>
+      lucide.createIcons();
+    </script>
 </body>
 </html>

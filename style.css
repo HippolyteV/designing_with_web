@@ -9,13 +9,13 @@
 body {
     display: flex;
     height: 100vh;
-    background-color: #eee; /* Gris clair global */
+    background-color: #eee; /* Gris clair partout */
     overflow: hidden;
 }
 
 .hidden-input, .size-radio { display: none; }
 
-/* 2. SIDEBAR (GAUCHE) */
+/* 2. BARRE DE MENU GAUCHE*/
 .sidebar {
     width: 280px;
     background-color: #ededed;
@@ -56,7 +56,7 @@ li {
     align-items: center; 
 }
 
-/* 3. ZONE DE CONTENU (DROITE) */
+/* 3. ZONE CENTRALE */
 .content {
     flex: 1;
     display: flex;
@@ -126,6 +126,7 @@ li {
 .price.orange { color: #d35400; }
 .price.green { color: #5d6d3e; }
 
+
 /* 5. MODALE */
 .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -136,23 +137,23 @@ li {
     opacity: 0; pointer-events: none; transition: 0.3s;
 }
 
-/* PROMPT : "Comment faire apparaître ma fenêtre modale uniquement quand la chaussure Adidas est cliquée, en restant uniquement en CSS ?"
-  SOLUTION : Utilisation du sélecteur combiné (#modal-trigger:checked ~ .modal-overlay). Si la checkbox est cochée, l'élément frère '.modal-overlay' change d'opacité.
+/* Prompt : "Comment faire apparaître ma fenêtre modale uniquement quand la chaussure Adidas est cliquée, en restant uniquement en CSS ?"
+  Solution : Utilisation du sélecteur combiné (#modal-trigger:checked ~ .modal-overlay). Si la checkbox est cochée, l'élément frère '.modal-overlay' change d'opacité.
 */
 #modal-trigger:checked ~ .modal-overlay { opacity: 1; pointer-events: auto; }
 
 .modal-content { 
     background-color: #999; width: 420px; padding: 2.5em; 
     display: flex; flex-direction: column; gap: 2em;
-    /* PROMPT : "Je veux que le bandeau blanc de description se superpose en haut de ma modale grise, et pas qu'il se rajoute en bas de la modale (avec screen à l'appui)." */
-    /* SOLUTION : On passe le parent en 'relative' pour que les futurs éléments en 'absolute' (comme la box info) se calent dessus. */
+    /* Prompt : "Je veux que le bandeau blanc de description se superpose en haut de ma modale grise, et pas qu'il se rajoute en bas de la modale (avec screen à l'appui)." */
+    /* Solution : On passe le parent en 'relative' pour que les futurs éléments en 'absolute' (comme la box info) se calent dessus. */
     position: relative; 
 }
 
 .modal-header { display: flex; justify-content: space-between; color: white; }
 .icon-btn { cursor: pointer; }
 
-/* HOVER DESCRIPTION */
+
 .info-container { position: relative; }
 .description-box {
     display: none; position: absolute;
@@ -161,10 +162,11 @@ li {
     font-weight: 900; font-size: 0.85rem; text-transform: uppercase;
     z-index: 50;
 }
-/* PROMPT : "Je veux que la description apparaisse en blanc tout en haut de la modale dès que je passe mon curseur sur l'icône 'i', et qu'elle disparaisse quand je l'enlève."
-  SOLUTION : Utilisation de position: absolute pour sortir la box du flux et du sélecteur :hover sur le conteneur parent.
+/* Prompt : "Je veux que la description apparaisse en blanc tout en haut de la modale dès que je passe mon curseur sur l'icône 'i', et qu'elle disparaisse quand je l'enlève."
+  Solution : Utilisation de position: absolute pour sortir la box du flux et du sélecteur :hover sur le conteneur parent.
 */
 .info-container:hover .description-box { display: block; }
+
 
 /* TAILLES */
 .size-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
@@ -176,11 +178,12 @@ li {
 .size-btn:not(.disabled):hover { 
     background-color: white; color: #999; } /*Je voulais que les tailles disponibles deviennent blanches au survol, j'ai donc demandé à Gemini Pro la ligne à rajouter pour que ça fonctionne. Il faut enfait rajouter un troisième état, avec la pseudo-classe :hover */
 
-/* PROMPT : "Comment faire pour qu'une taille reste sélectionnée (fond blanc) après avoir cliqué dessus ?"
-SOLUTION : Utilisation de boutons radios invisibles. Quand un bouton est :checked, on stylise le <label> qui se trouve juste après (+) avec un fond blanc. */
+/* Prompt : "Comment faire pour qu'une taille reste sélectionnée (fond blanc) après avoir cliqué dessus ?"
+Solution : Utilisation de boutons radios invisibles. Quand un bouton est :checked, on stylise le <label> qui se trouve juste après (+) avec un fond blanc. */
 .size-radio:checked + .size-btn { background: white; color: #999; }
 
-/* IMAGE FLOU ET COEUR */
+
+/* ARRIÈRE-PLAN FLOU ET COEUR */
 .modal-product-view { position: relative; display: flex; justify-content: center; }
 .blurred-img { max-width: 90%; filter: blur(10px); opacity: 0.5; }
 .heart-label { position: absolute; right: 0; bottom: 0; color: white; cursor: pointer; }

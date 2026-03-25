@@ -7,10 +7,17 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
+<!-- Problème : Je souhaitais afficher des icônes (panier, cœur, bouton info) sans avoir à avoir les fichiers en local
+Prompt : "Comment intégrer facilement des icônes vectorielles dans un site HTML sans devoir télécharger et héberger des fichiers ?"
+Solution Gemini Pro : Utilisation de la bibliothèque Lucide. L'IA m'a fourni le lien CDN à placer dans le <head> et la commande lucide.createIcons(); pour activer les icônes à la fin du document.-->
+
 <body>
 
     <input type="checkbox" id="modal-trigger" class="hidden-input">
-    <!-- pour faire ça j'ai vu ça sur le site suivant : https://css-tricks.com/the-checkbox-hack/ -->
+    <!-- Problème : Je voulais que l'utilisateur puisse cliquer sur une chaussure pour voir les détails dans une fenêtre qui apparaît, mais on n'a pas encore vu comment le faire en JavaScript.
+    Prompt : "Comment ouvrir et fermer une fenêtre modale en HTML et CSS uniquement, sans utiliser de JavaScript ?"
+    Solution Gemini Pro : La technique du "Checkbox Hack". L'IA m'a suggéré d'utiliser un <input type="checkbox"> caché. En utilisant un <label> autour de la carte produit, le clic coche la case, ce qui permet de modifier l'affichage de la modale via le sélecteur CSS :checked-->
 
     <nav class="sidebar">
         <h1>PAIRZ</h1>
@@ -105,6 +112,10 @@
                 </div>
                 <label for="modal-trigger" class="icon-btn"><i data-lucide="x"></i></label>
             </div>
+
+            <!-- Problème : Je voulais créer une liste de tailles où l'utilisateur ne peut en choisir qu'une seule à la fois, avec un style de bouton plutôt qu'une liste déroulante classique.
+            Prompt : "Quel est le meilleur élément HTML pour faire un choix unique parmi plusieurs options (tailles de chaussures) et comment le personnaliser pour que ça ressemble à des boutons ?"
+            Solution Gemini Pro : Utilisation des boutons radio (<input type="radio">) partageant le même attribut name. L'IA m'a montré comment lier chaque bouton à un <label> pour masquer le bouton rond par défaut et styliser le cadre à la place.-->
 
             <div class="size-selector">
                 <div class="size-btn disabled">36</div>

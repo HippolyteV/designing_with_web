@@ -114,7 +114,7 @@ li {
 }
 
 .product-card:hover .product-image img { 
-    /* Zoom de 10% On utilise un hover comme pour la fiche info*/
+    /* Zoom de 10% On utilise un hover comme pour la fiche info (j'ai fait le code de ce zoom après celui de la fiche info mais j'ai réorganisé le code après)*/
     transform: scale(1.1); 
 }
 
@@ -145,7 +145,7 @@ li {
 .modal-content { 
     background-color: #999; width: 420px; padding: 2.5em; 
     display: flex; flex-direction: column; gap: 2em;
-    /* Prompt : "Je veux que le bandeau blanc de description se superpose en haut de ma modale grise, et pas qu'il se rajoute en bas de la modale (avec screen à l'appui)." */
+    /* Prompt : "Je veux que le bandeau blanc de description se superpose en haut de ma modale grise, et pas qu'il se rajoute en bas de la modale (avec screen à l'appui, comme pour la majorité de mes prompts concernant le css)." */
     /* Solution : On passe le parent en 'relative' pour que les futurs éléments en 'absolute' (comme la box info) se calent dessus. */
     position: relative; 
 }

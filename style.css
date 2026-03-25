@@ -1,4 +1,4 @@
-/* on applique Montserrat partout */
+/* 1. CONFIGURATION DE BASE */
 * {
     margin: 0;
     padding: 0;
@@ -9,64 +9,60 @@
 body {
     display: flex;
     height: 100vh;
-    color: #1a1a1a; /* Un noir légèrement adouci */
+    background-color: #eee; /* Gris clair global */
+    overflow: hidden;
 }
 
-/* --- Sidebar --- */
+.hidden-input, .size-radio { display: none; }
+
+/* 2. SIDEBAR (GAUCHE) */
 .sidebar {
-    width: 280px; /* Légèrement plus large pour le confort */
+    width: 280px;
     background-color: #ededed;
     padding: 2em;
     display: flex;
     flex-direction: column;
 }
 
-/* Ajustement du logo PAIRZ */
 h1 { 
-    font-weight: 900;      /* Très gras comme sur ton image */
-    font-size: 4.5rem;     /* Taille imposante mais équilibrée */
-    line-height: 0.9;      /* Resserre l'espace vertical */
-    letter-spacing: -2px;  /* Resserre les lettres pour l'aspect "compact" */
-    margin-bottom: 1.5em;
+    font-weight: 900; 
+    font-size: 4.5rem; 
+    line-height: 0.9; 
+    letter-spacing: -2px; 
+    margin-bottom: 1.5em; 
 }
 
-/* --- Menu de navigation --- */
 ul { list-style: none; }
 
-li {
-    background: white;
-    margin-bottom: 0.3em;
-    padding: 1.2em 1em;
-    font-weight: 700;      /* Texte bien gras */
-    font-size: 0.85rem;    /* Un peu plus petit pour le style menu */
-    letter-spacing: 0.5px;
-    cursor: pointer;
+li { 
+    background: white; 
+    margin-bottom: 0.4em; 
+    padding: 1.2em 1em; 
+    font-weight: 700; 
+    font-size: 0.8rem; 
+    cursor: pointer; 
 }
 
-.red-text { 
-    color: #a02020; 
+.red-text { color: #a02020; }
+
+.filter-bar { 
+    margin-top: auto; 
+    background: black; 
+    color: white; 
+    padding: 1.2em; 
+    font-weight: 700; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
 }
 
-/* Barre de filtre en bas */
-.filter-bar {
-    margin-top: auto;
-    background: black;
-    color: white;
-    padding: 1.2em;
-    font-weight: 700;
-    font-size: 0.8rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-}
-
-/* --- Zone de contenu --- */
+/* 3. ZONE DE CONTENU (DROITE) */
 .content {
     flex: 1;
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: #eee; /* Fond gris identique aux cartes */
+    overflow-y: auto;
 }
 
 .top-bar {
@@ -75,71 +71,123 @@ li {
     justify-content: flex-end;
     align-items: center;
     padding-right: 3em;
-    /* On enlève la bordure si on veut un look plus "Figma" épuré */
 }
 
-/* mise en page pour le panier*/
-.cart-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 0.8em;
-    font-weight: 700;
+.cart-wrapper { 
+    display: flex; 
+    align-items: center; 
+    gap: 0.8em; 
+    font-weight: 700; 
     font-size: 0.9rem;
+    margin-top: 20px; /* le panier était trop collé au bord haut, j'ai demandé à Gemini Pro la ligne à rajouter pour le descendre un peu */
 }
 
-/* Grille de 3 colonnes */
+/* 4. GRILLE DE PRODUITS */
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 3em; /* Espacement dynamique entre les cartes */
     padding: 0 3em 3em 3em;
 }
 
-/* Style des infos sous l'image */
-.product-info {
-    margin-top: 1em;
-}
-
-.brand {
-    font-size: 0.75em;
-    font-weight: 700;
-    color: #888;
-    margin-bottom: 0.3em;
-}
-
-.model {
-    font-size: 0.9em;
-    font-weight: 700;
-    margin-bottom: 0.3em;
-}
-
-.price {
-    font-weight: 900; /* Très gras comme le logo */
-    font-size: 0.9em;
-}
-
-/* Couleurs spécifiques demandées sur le Figma */
-.price.blue { color: #0045a5; }
-.price.orange { color: #d35400; }
-.price.green { color: #5d6d3e; }
-
-/* Conteneur d'image gris */
-.product-image {
-    background-color: #eee;
-    aspect-ratio: 1 / 1; /* Force l'image à être carrée */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.product-card {
     padding: 2em;
+    display: flex;
+    flex-direction: column;
+    /* Ligne à gauche pour tout le monde */
+    /* PROMPT : "Je veux que toutes mes colonnes, y compris la première, aient une fine ligne blanche verticale à leur gauche pour bien séparer le contenu de la sidebar." */
+    /* SOLUTION : On applique une border-left à toutes les cartes. */
+    border-left: 1px solid white;
+}
+
+.product-image { 
+    background-color: transparent; 
+    aspect-ratio: 1/1; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 2em; 
 }
 
 .product-image img {
     max-width: 100%;
     height: auto;
-    /* Petit effet de survol pour faire plaisir au prof */
-    transition: transform 0.3s ease;
 }
 
-.product-image img:hover {
-    transform: scale(1.1);
+.product-card:hover .product-image img { 
+    /* Zoom de 10% On utilise un hover comme pour la fiche info*/
+    transform: scale(1.1); 
 }
+
+.product-info { margin-top: 1em; }
+.brand { font-size: 0.7em; font-weight: 700; color: #888; text-transform: uppercase; }
+.model { font-size: 0.9em; font-weight: 700; margin: 0.3em 0; }
+.price { font-weight: 900; font-size: 0.9em; }
+.price.blue { color: #0045a5; }
+.price.orange { color: #d35400; }
+.price.green { color: #5d6d3e; }
+
+/* 5. MODALE */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    opacity: 0; pointer-events: none; transition: 0.3s;
+}
+
+/* PROMPT : "Comment faire apparaître ma fenêtre modale uniquement quand la chaussure Adidas est cliquée, en restant uniquement en CSS ?"
+  SOLUTION : Utilisation du sélecteur combiné (#modal-trigger:checked ~ .modal-overlay). Si la checkbox est cochée, l'élément frère '.modal-overlay' change d'opacité.
+*/
+#modal-trigger:checked ~ .modal-overlay { opacity: 1; pointer-events: auto; }
+
+.modal-content { 
+    background-color: #999; width: 420px; padding: 2.5em; 
+    display: flex; flex-direction: column; gap: 2em;
+    /* PROMPT : "Je veux que le bandeau blanc de description se superpose en haut de ma modale grise, et pas qu'il se rajoute en bas de la modale (avec screen à l'appui)." */
+    /* SOLUTION : On passe le parent en 'relative' pour que les futurs éléments en 'absolute' (comme la box info) se calent dessus. */
+    position: relative; 
+}
+
+.modal-header { display: flex; justify-content: space-between; color: white; }
+.icon-btn { cursor: pointer; }
+
+/* HOVER DESCRIPTION */
+.info-container { position: relative; }
+.description-box {
+    display: none; position: absolute;
+    top: -2.5em; left: -2.5em; width: 420px;
+    background: white; color: #333; padding: 2em;
+    font-weight: 900; font-size: 0.85rem; text-transform: uppercase;
+    z-index: 50;
+}
+/* PROMPT : "Je veux que la description apparaisse en blanc tout en haut de la modale dès que je passe mon curseur sur l'icône 'i', et qu'elle disparaisse quand je l'enlève."
+  SOLUTION : Utilisation de position: absolute pour sortir la box du flux et du sélecteur :hover sur le conteneur parent.
+*/
+.info-container:hover .description-box { display: block; }
+
+/* TAILLES */
+.size-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.size-btn { 
+    border: 2px solid white; color: white; padding: 12px; 
+    text-align: center; font-weight: 700; cursor: pointer; 
+}
+.size-btn.disabled { border-color: #555; color: #555; cursor: not-allowed; }
+.size-btn:not(.disabled):hover { 
+    background-color: white; color: #999; } /*Je voulais que les tailles disponibles deviennent blanches au survol, j'ai donc demandé à Gemini Pro la ligne à rajouter pour que ça fonctionne. Il faut enfait rajouter un troisième état, avec la pseudo-classe :hover */
+
+/* PROMPT : "Comment faire pour qu'une taille reste sélectionnée (fond blanc) après avoir cliqué dessus ?"
+SOLUTION : Utilisation de boutons radios invisibles. Quand un bouton est :checked, on stylise le <label> qui se trouve juste après (+) avec un fond blanc. */
+.size-radio:checked + .size-btn { background: white; color: #999; }
+
+/* IMAGE FLOU ET COEUR */
+.modal-product-view { position: relative; display: flex; justify-content: center; }
+.blurred-img { max-width: 90%; filter: blur(10px); opacity: 0.5; }
+.heart-label { position: absolute; right: 0; bottom: 0; color: white; cursor: pointer; }
+#heart-trigger:checked + .heart-label svg { fill: white; }
+
+.add-to-cart-btn { 
+    background: white; color: #333; border: none; padding: 1.2em; 
+    font-weight: 900; cursor: pointer; transition: 0.3s; 
+}
+.add-to-cart-btn:hover { background: #333; color: white; }

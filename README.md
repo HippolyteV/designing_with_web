@@ -1,4 +1,4 @@
-# PAIRZ - Prototype
+# PAIRZ Prototype
 
 For this assignment, I utilized the **Gemini 1.5 Pro** model via the Google Gemini Web interface. 
 

@@ -5,19 +5,10 @@
     <title>Pairz Prototype</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-
-<!-- Problème : Je souhaitais afficher des icônes (panier, cœur, bouton info) sans avoir à avoir les fichiers en local
-Prompt : "Comment intégrer facilement des icônes vectorielles dans un site HTML sans devoir télécharger et héberger des fichiers ?"
-Solution Gemini Pro : Utilisation de la bibliothèque Lucide. L'IA m'a fourni le lien CDN à placer dans le <head> et la commande lucide.createIcons(); pour activer les icônes à la fin du document.-->
-
 <body>
-
-    <input type="checkbox" id="modal-trigger" class="hidden-input">
-    <!-- Problème : Je voulais que l'utilisateur puisse cliquer sur une chaussure pour voir les détails dans une fenêtre qui apparaît, mais on n'a pas encore vu comment le faire en JavaScript.
-    Prompt : "Comment ouvrir et fermer une fenêtre modale en HTML et CSS uniquement, sans utiliser de JavaScript ?"
-    Solution Gemini Pro : La technique du "Checkbox Hack". L'IA m'a suggéré d'utiliser un <input type="checkbox"> caché. En utilisant un <label> autour de la carte produit, le clic coche la case, ce qui permet de modifier l'affichage de la modale via le sélecteur CSS :checked-->
 
     <nav class="sidebar">
         <h1>PAIRZ</h1>
@@ -39,107 +30,13 @@ Solution Gemini Pro : Utilisation de la bibliothèque Lucide. L'IA m'a fourni le
                 <span>CART</span>
             </div>
         </header>
-        
-        <section class="grid">
-            <div class="product-card">
-                <div class="product-image"><img src="https://makerslab.em-lyon.com/dww/data/products/327.png" alt="NB 327"></div>
-                <div class="product-info">
-                    <p class="brand">NEW BALANCE / MEN</p>
-                    <h3 class="model">327</h3>
-                    <p class="price">€ 120,00</p>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image"><img src="https://makerslab.em-lyon.com/dww/data/products/rs-z-lth.png" alt="Puma RS-Z"></div>
-                <div class="product-info">
-                    <p class="brand">PUMA / MEN</p>
-                    <h3 class="model">RS-Z LTH</h3>
-                    <p class="price">€ 120,00</p>
-                </div>
-            </div>
-
-            <label for="modal-trigger" class="product-card clickable">
-                <div class="product-image"><img src="https://makerslab.em-lyon.com/dww/data/products/forum-low-og.png" alt="Adidas Forum"></div>
-                <div class="product-info">
-                    <p class="brand">ADIDAS ORIGINALS / MEN</p>
-                    <h3 class="model">FORUM LOW OG</h3>
-                    <p class="price blue">€ 120,00</p>
-                </div>
-            </label>
-
-            <div class="product-card">
-                <div class="product-image"><img src="https://makerslab.em-lyon.com/dww/data/products/gel-quantum-360-6-utility.png" alt="Asics"></div>
-                <div class="product-info">
-                    <p class="brand">ASICS / MEN</p>
-                    <h3 class="model">GEL-QUANTUM 360 6 UTILITY</h3>
-                    <p class="price orange">€ 120,00</p>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image"><img src="https://makerslab.em-lyon.com/dww/data/products/air-vapormax-2021-fk.png" alt="Nike"></div>
-                <div class="product-info">
-                    <p class="brand">NIKE / MEN</p>
-                    <h3 class="model">AIR VAPORMAX 2021 FK</h3>
-                    <p class="price">€ 120,00</p>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image"><img src="https://makerslab.em-lyon.com/dww/data/products/mayze-classic.png" alt="Puma"></div>
-                <div class="product-info">
-                    <p class="brand">PUMA / WOMEN</p>
-                    <h3 class="model">MAYZE CLASSIC</h3>
-                    <p class="price green">€ 120,00</p>
-                </div>
-            </div>
-        </section>
+        <section class="grid" id="products-grid"></section>
     </main>
 
-    <div class="modal-overlay">
-        <div class="modal-content">
-            
-            <div class="modal-header">
-                <div class="info-container">
-                    <i data-lucide="info" class="icon-btn"></i>
-                    <div class="description-box">
-                        <div class="desc-title">
-                            <i data-lucide="info"></i> DESCRIPTION
-                        </div>
-                        AN URBAN AND COLORFUL LOOK WITH THIS ADIDAS SNEAKER
-                    </div>
-                </div>
-                <label for="modal-trigger" class="icon-btn"><i data-lucide="x"></i></label>
-            </div>
+    <!-- PROMPT : "Où est-ce que je dois placer le code HTML de mes modales générées en JS pour éviter les conflits avec ma grille ?"
+    RÉPONSE GEMINI : "Création d'un div #popovers-container en fin de body pour isoler les éléments interactifs du contenu principal."-->
 
-            <!-- Problème : Je voulais créer une liste de tailles où l'utilisateur ne peut en choisir qu'une seule à la fois, avec un style de bouton plutôt qu'une liste déroulante classique.
-            Prompt : "Quel est le meilleur élément HTML pour faire un choix unique parmi plusieurs options (tailles de chaussures) et comment le personnaliser pour que ça ressemble à des boutons ?"
-            Solution Gemini Pro : Utilisation des boutons radio (<input type="radio">) partageant le même attribut name. L'IA m'a montré comment lier chaque bouton à un <label> pour masquer le bouton rond par défaut et styliser le cadre à la place.-->
+    <div id="popovers-container"></div>
 
-            <div class="size-selector">
-                <div class="size-btn disabled">36</div>
-                <div class="size-btn disabled">37</div>
-                <input type="radio" name="size" id="s38" class="size-radio"><label for="s38" class="size-btn">38</label>
-                <input type="radio" name="size" id="s39" class="size-radio"><label for="s39" class="size-btn">39</label>
-                <input type="radio" name="size" id="s40" class="size-radio"><label for="s40" class="size-btn">40</label>
-                <div class="size-btn disabled">41</div>
-                <input type="radio" name="size" id="s42" class="size-radio"><label for="s42" class="size-btn">42</label>
-                <input type="radio" name="size" id="s43" class="size-radio"><label for="s43" class="size-btn">43</label>
-                <div class="size-btn disabled">44</div>
-            </div>
-
-            <div class="modal-product-view">
-                <img src="https://makerslab.em-lyon.com/dww/data/products/forum-low-og.png" class="blurred-img">
-                <input type="checkbox" id="heart-trigger" class="hidden-input">
-                <label for="heart-trigger" class="heart-label"><i data-lucide="heart"></i></label>
-            </div>
-
-            <button class="add-to-cart-btn">ADD TO CART</button>
-            
-        </div>
-    </div>
-
-    <script>lucide.createIcons();</script>
 </body>
 </html>

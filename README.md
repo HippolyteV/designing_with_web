@@ -2,8 +2,6 @@
 
 For this assignment, I utilized the **Gemini 1.5 Pro** model via the Google Gemini Web interface. 
 
-The focus was on creating a fully interactive prototype using only **HTML and CSS**, intentionally avoiding JavaScript for the moment.
-
 **Link to my Figma prototype:** https://www.figma.com/design/gOgNWttcH4oDRoGEQGSIs2/vaucelle-dww-assignement-1?node-id=1001-2&t=ecrpXEKZ2ncyseLo-1
 
 **Additional resources include:**
